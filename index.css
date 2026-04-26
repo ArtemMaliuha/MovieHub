@@ -1,0 +1,816 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  margin: 50px 0 0 0;
+  background-color: black;
+  font-family: "Inter", sans-serif;
+}
+
+
+.Navbar{
+  display: flex;
+  backdrop-filter: blur(10px);
+  background-color: rgba(20, 20, 20, 0.5);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 56px;
+  align-items: center;
+  z-index: 10;
+
+  & a{
+    text-decoration: none;
+  }
+}
+
+.navbar-search{
+  width: 250px;
+  margin-left: auto;
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+
+  & button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  & input{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding-left: 8px;
+    width: 100%;
+    height: 24px;         
+    line-height: 24px;    
+    font-size: 16px;
+  }
+
+  & input::placeholder{
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+  }
+}
+
+.navbar-search:focus-within {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.movie-text{
+  color: white;
+  margin-left: 48px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.hub-text{
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 24px;
+  margin-right: 40px;
+}
+
+.home-link{
+  color: #A0A0A0;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.favorites-link{
+  color: #A0A0A0;
+  font-size: 20px;
+}
+
+.favorites-amount {
+  background-color: #E50914;
+  color: white;
+  font-size: 12px;           
+  font-weight: 700;
+  display: inline-flex;     
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;           
+  height: 20px;
+  padding: 0 6px;            
+  border-radius: 10px;       
+  box-sizing: border-box;    
+  line-height: 1;            
+  vertical-align: middle;
+  margin-left: 6px;
+  padding-top: 1px; 
+}
+
+.active{
+  color: white;
+}
+
+.poster-wall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  z-index: -1;
+  opacity: 0.2;
+  filter: grayscale(50%);
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+.poster-wall img {
+  width: 100%; 
+  height: 270px; 
+  object-fit: cover;
+  display: block;
+}
+
+.homepage-search-section{
+  width: 1000px;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: end;
+  
+
+  & h1 {
+    color: white;
+    margin-bottom: 8px;
+  }
+}
+
+.homepage-search{
+  display: flex;           
+  align-items: center;     
+  width: 100%;             
+  max-width: 800px;        
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px);
+  border-radius: 50px;     
+  padding: 5px 5px 5px 20px; 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  & .homepage-search-input{
+    flex: 1;                 
+    background: transparent; 
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  & .homepage-search-btn{
+    padding: 10px 25px; 
+    height: 45px;           
+    border-radius: 30px; 
+    background-color: #e0e0e0; 
+    color: #1a1a1a;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease;
+  }
+}
+
+.trending-now{
+  width: 1200px;
+  height: auto;
+  display: block;
+  margin: 24px auto 0 auto;
+
+
+  & h2{
+    margin: 0 0 8px;
+    color: white;
+  }
+}
+
+.trending-movies-cards:-webkit-scrollbar {
+  height: 5px;
+}
+
+.trending-movies-cards::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.trending-movies-cards::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); 
+  border-radius: 20px; 
+  transition: background-color 0.3s ease;
+}
+
+.trending-movies-cards::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.trending-movies-cards{
+  display: flex;
+  overflow-x: scroll;
+  gap: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.trending-movie-card{
+  position: relative;
+
+  & .trending-movie-poster{
+  width: 180px;
+  height: auto;
+}
+
+  & .trending-movie-title{
+    color: white;
+    font-weight: 600;
+    margin: 4px 0;
+  }
+
+  
+}
+
+.trending-movie-rating{
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    & span{
+      color: white;
+    }
+  }
+
+.favorite-btn{
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border: none;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hidden{
+  display: none;
+}
+
+.card-info-row{
+  display: flex;
+}
+
+.trending-movie-release-date{
+  color: #BBBBBB;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  & span{
+    font-size: 13px;
+    margin-left: 8px;
+  }
+}
+
+.favorites-background, .search-background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(180deg, #2A2D30 0%, #0B0D0F 100%);
+  z-index: -1;
+}
+
+.favorites-header{
+  margin: 104px 0 0 48px;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.favorites-paragraph{
+  margin: 8px 0 32px 48px;
+  color: #BBBBBB;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.favorite-movies-cards, .search-movies-cards{
+  display: flex;
+  margin: 0 48px;
+  flex-wrap: wrap;
+}
+
+.favorite-movie-card, .search-movie-card, .filmography-card{
+  margin-right: 20px;
+  position: relative;
+
+  & .favorite-movie-poster, .search-movie-poster, .filmography-poster{
+  width: 217px;
+  height: 325.5px;
+  }
+
+  & .favorite-movie-title, .search-movie-title, .filmography-title {
+    margin: 4px 0;
+    color: white;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 217px;
+  }
+}
+
+.favorite-movie-rating, .search-movie-rating, .filmography-rating{
+  margin: 0;
+    display: flex;
+    align-items: center;
+
+    & span{
+      color: white;
+    }
+}
+
+.favorite-movie-release-date, .search-movie-release-date, .filmography-release-date{
+  color: #BBBBBB;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  & span{
+    font-size: 13px;
+    margin-left: 8px;
+  }
+}
+
+.card-info-row{
+  margin-bottom: 12px;
+}
+
+.search-header{
+  margin: 80px 0 0 48px;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.load-more-btn{
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 25px;
+  padding-top: 4px;
+  padding-bottom: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.load-more-btn:hover{
+  opacity: 1;
+}
+
+
+.footer-wrapper {
+    width: 100%;
+    padding: 40px 0;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+.footer-content {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center; 
+    gap: 80px; 
+    align-items: center;
+}
+
+.tmdb-logo {
+    width: 100px;
+    height: auto;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.tmdb-logo:hover {
+    opacity: 1;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.tmdb-attribution {
+    font-size: 11px;
+    color: #888;
+    margin: 0;
+    max-width: 400px;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+.movie-details-background,  .actor-details-background{
+  width: 100%;
+  height: 75vh; 
+  object-fit: cover;
+  object-position: top; 
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  mask-image: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,1) 0%,      
+    rgba(0,0,0,1) 20%,     
+    rgba(0,0,0,0) 90%      
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,1) 0%, 
+    rgba(0,0,0,1) 20%, 
+    rgba(0,0,0,0) 90%
+  );
+}
+
+.hero-section{
+  height: 55vh;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  padding-top: 40px;
+}
+
+.main-poster, .main-profile{
+  width: 220px;
+  height: auto;
+  margin-left: 48px;
+}
+
+.hero-info{
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 40px;
+
+  &  .movie-title, .actor-name{
+    color: white;
+    margin: 0 0 8px;
+    font-size: 40px;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 1);
+  }
+
+  & .genres{
+    color: white;
+    margin: 0;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 1);
+    opacity: 0.8;
+  }
+
+}
+
+.meta-data{
+    color: white;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 1);
+    opacity: 0.75;
+
+    & span{
+      font-size: 13px;
+      margin: 0 4px;
+    }
+}
+
+.rating{
+  display: flex;
+  align-items: center;
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 1);
+
+  & span{
+    margin-left: 4px;
+    color: white;
+  }
+}
+
+.hero-actions{
+  margin-top: 28px;
+  margin-bottom: 16px;
+  display: flex;
+
+}
+
+.btn-play{
+  height: 44px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d03739;
+  padding: 0 24px;
+  border-radius: 22px;
+  border: none;
+  margin-right: 16px;
+
+  & span{
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-left: 4px;
+  }
+}
+
+.btn-fav{
+  height: 44px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  padding: 0 24px;
+  border-radius: 22px;
+  border: 1px solid white;
+
+  & span{
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-left: 4px;
+  }
+}
+
+.details-grid{
+  display: flex;
+  margin-left: 48px;
+  color: white;
+  gap: 60px;
+}
+
+.synopsis-container{
+  flex: 1;
+  line-height: 1.5;
+
+
+  & h3{
+    font-size: 24px;
+    margin: 0;
+  }
+
+  & p{
+    font-size: 20px;
+    margin-top: 10px;
+    opacity: 0.8;
+  }
+}
+
+.cast-container{
+  flex: 1;
+  min-width: 0;
+  
+  & h3{
+    font-size: 24px;
+    margin: 0;
+  }
+}
+
+.cast-scroll{
+  margin-top: 16px;
+  display: flex;
+  overflow-x: scroll;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+}
+
+.cast-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-right: 16px;
+  color: white;
+
+  & img{
+    height: 128px;
+    width: 128px;
+    border: none;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 28%;
+  }
+
+}
+
+.window-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 11;
+}
+
+.window-content{
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9; 
+  background: #000;
+}
+
+.window-close-btn{
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.imdb-link{
+  height: 44px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5C518;
+  padding: 0 24px;
+  border-radius: 22px;
+  border: none;
+  margin-right: 16px;
+  color: #000000;
+}
+
+.bio-credits-section{
+  margin: 0 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.biography-container{
+  color: white;
+
+  & .biography-header{
+    font-size: 24px;
+  }
+
+  & .biography-paragraph{
+    opacity: 0.8;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+}
+
+.extend-bio-btn{
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 25px;
+  padding-top: 4px;
+  padding-bottom: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.extend-bio-btn:hover{
+  opacity: 1;
+}
+
+.filmography-container{
+  width: 100%;
+  height: auto;
+}
+
+.filmography-header{
+  color: white;
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.filmography-cards{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filters-container{
+  margin: 16px 0 16px 48px;
+  display: flex;
+  gap: 16px;
+}
+
+.title-filter,
+.year-filter,
+.rating-filter{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #2a2a2a; 
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 8px 35px 8px 20px; 
+  border: 1px solid #444;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+}
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #121212; 
+    color: #ffffff; 
+    text-align: center;
+    padding: 20px;
+}
+
+.not-found-title {
+    font-size: 8rem;
+    margin: 0;
+    color: #ff007a;
+    font-weight: bold;
+}
+
+.not-found-message {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.back-home-btn {
+    padding: 12px 25px;
+    background-color: #ff007a;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.back-home-btn:hover {
+    transform: scale(1.05);
+}
