@@ -1,18 +1,17 @@
-# React + Vite
+#  MovieHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React movie discovery app for browsing trending films and TV shows, searching by title, and exploring detailed pages for both titles and cast members.
 
-Currently, two official plugins are available:
+##  Features
+- **Home page** — animated poster wall backdrop with a search bar and a trending titles carousel.
+- **Search** — find movies and TV shows by name.
+- **Movie / TV details** — poster, synopsis, rating, age certification, runtime, genres, cast, and trailer playback.
+- **Person details** — biography, birthdate, known roles, IMDB link, and full filmography.
+- **Favorites** — save titles to a personal list, persisted in localStorage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Tech Stack
+- **Framework:** React 19 (with the React Compiler enabled)
+- **Build Tool:** Vite 7 for bundling and dev server
+- **Routing:** React Router 7 for client-side routing
+- **API:** TMDB API for movie, TV, and person data
+- **Icons:** `react-icons` for UI icons
